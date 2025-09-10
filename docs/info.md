@@ -13,10 +13,10 @@ Created in 1960s by Digital Equipment Corp., the PDP8 has a 4096 words of 12-bit
 
 ## How to test
 
-It takes a special script to emulate the serial memory that contains the software and data which the fabricated CPU will operate on.  As of September 2025, I have a verilog testbench to do this. This makes me confident the chip will function correctly 
+It takes a special script to emulate the serial memory that contains the software and data which the fabricated CPU will operate on.  As of September 2025, I have a verilog testbench to do this. This makes me confident the chip will function correctly.
 
 To play with the fabricated chip, such test code needs to be in python.  At the time this is submitted for fab, this code does not yet exist in python, but by the time it is fabricated I hope the python script will be in this repo.
 
 ## External hardware
 
-The design in my book connected an actual 1-bit wide RAM chip to ma and mb.  Using this proposed python app, this is not necessary.
+The design in my book connected an actual 1-bit wide RAM chip to ma and ba.  Using this proposed python app, this is not necessary.
