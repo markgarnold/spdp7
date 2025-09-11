@@ -6,6 +6,7 @@ from cocotb.clock import Clock
 from cocotb.triggers import ClockCycles
 from cocotb.triggers import Timer
         
+max_clock_cycles = 200
 
 #  pdp8_cpu cpu(write,membus,cont,
 #                    ba,ma,mb,halt,reset,sysclk);
@@ -104,7 +105,7 @@ async def test_project(dut):
         halt = dut.uo_out.value >> 7
         dut._log.info("halted "+str(dut.uo_out.value))
     
-    while (halt == 0) and (counter < 130):
+    while (halt == 0) and (counter < max_clock_cycles):
         dut._log.info("run out "+str(dut.uo_out.value)+" "+str(dut.uio_out.value)+" counter="+str(counter))
         #halt = dut.uo_out.value >> 7
         #ma = dut.uo_out.value & 0x7f
@@ -130,9 +131,13 @@ async def test_project(dut):
         if ba==12:
             dut._log.info(oct(ma+0o10000)[3:]+'/'+oct(m[ma]+0o10000)[3:])
 
-        dut.ui_in.setimmediatevalue((contin<<1)|membus)
-        await Timer(time=0, units='ns') 
-        dut._log.info("run in="+str(dut.ui_in.value))
+        #These did not solve the lag of membus:
+        #dut.ui_in.setimmediatevalue((contin<<1)|membus)
+        #await Timer(time=0, units='ns') 
+        #instead added extra wait state in verilog so following works in the next cycle
+        dut.ui_in.value = (contin<<1)|membus
+            
+        dut._log.info("run in="+str(dut.ui_in.value)) #this value lags one cycle behind
         contin = 0
 
         # Wait for one clock cycle to see the output values
@@ -142,6 +147,5 @@ async def test_project(dut):
     log_m(m,dut)
 
     assert m[0o0105] == 0o1234
-    #assert m[0o0100] == 0o2470  # !=0o3510 
 
 
