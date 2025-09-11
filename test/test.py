@@ -126,8 +126,8 @@ async def test_project(dut):
             membus = read_m(m,int(ma),int(ba))
             dut._log.info("read  "+str(membus)+" ma="+str(ma)+" ba="+str(ba))
  
-        dut.ui_in.value = "000000"+str(contin)+str(membus)    #(contin<<1)|membus
-        dut._log.info("run in "+str(dut.ui_in.value))
+        dut.ui_in.value = (contin<<1)|membus
+        dut._log.info("run in="+str(dut.ui_in.value))
         contin = 0
 
         # Wait for one clock cycle to see the output values
