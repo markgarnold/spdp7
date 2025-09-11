@@ -42,7 +42,7 @@ def display_m(m):
 def log_m(m,dut):
     dut._log.info(" ")
     for i in range(0o0100, 0o0106):
-        dut._log.info(oct(i+0o10000)[3:]+' '+oct(m[i]+0o10000)[3:])
+        dut._log.info(oct(i+0o10000)[3:]+'/'+oct(m[i]+0o10000)[3:])
 
 def bitdisplay_m(m):
     for i in range(0o0100, 0o0106):
@@ -125,7 +125,10 @@ async def test_project(dut):
         else:
             membus = read_m(m,int(ma),int(ba))
             dut._log.info("read  "+str(membus)+" ma="+str(ma)+" ba="+str(ba))
- 
+
+        if ba==12:
+            dut._log.info(oct(ma+0o10000)[3:]+'/'+oct(m[ma]+0o10000)[3:])
+
         dut.ui_in.value = (contin<<1)|membus
         dut._log.info("run in="+str(dut.ui_in.value))
         contin = 0
