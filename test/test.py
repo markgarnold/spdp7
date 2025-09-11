@@ -100,8 +100,10 @@ async def test_project(dut):
         await ClockCycles(dut.clk, 1)
         dut.ui_in.value = contin << 1
         halt = dut.uo_out.value >> 7
-
+        dut._log.info("halted "+dut.uo_out.value)
+    
     while halt == 0:
+        dut._log.info("running "+dut.uo_out.value)
         halt = dut.uo_out.value >> 7
         ma = dut.uo_out.value & 0x7f
         write = dut.uio_out.value >>5
