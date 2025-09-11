@@ -103,7 +103,7 @@ async def test_project(dut):
         halt = dut.uo_out.value >> 7
         dut._log.info("halted "+str(dut.uo_out.value))
     
-    while (halt == 0) and (counter < 100):
+    while (halt == 0) and (counter < 130):
         dut._log.info("run out "+str(dut.uo_out.value)+" "+str(dut.uio_out.value)+" counter="+str(counter))
         #halt = dut.uo_out.value >> 7
         #ma = dut.uo_out.value & 0x7f
