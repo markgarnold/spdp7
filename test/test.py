@@ -109,12 +109,13 @@ async def test_project(dut):
         #write = dut.uio_out.value >>5
         #mb = (dut.uio_out.value >> 4) & 1
         #ba = dut.uio_out.value & 0xf
-        
-        halt = dut.uo_out.value[7]
-        ma = dut.uo_out.value[6:0]
-        write = dut.uio_out.value[5]
-        mb = dut.uio_out.value[4]
-        ba = dut.uio_out.value[3:0]
+
+        #big endian vs little endian
+        halt = dut.uo_out.value[0]   #[7]
+        ma = dut.uo_out.value[1:]    #[6:0]
+        write = dut.uio_out.value[2] #[5]
+        mb = dut.uio_out.value[3]    #[4]
+        ba = dut.uio_out.value[4:]   #[3:0]
         
         if (halt == 0) and (write == 0):  #active low write during run
             m=write_m(m,int(ma),int(ba),int(mb))
