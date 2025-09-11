@@ -140,6 +140,6 @@ async def test_project(dut):
     log_m(m,dut)
 
     #assert m[0o0105] == 0o1234
-    assert m[0o0100] != 0o3510 
+    assert m[0o0100] == 0o2470  # !=0o3510 
 
 
