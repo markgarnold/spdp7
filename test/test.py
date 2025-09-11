@@ -95,6 +95,7 @@ async def test_project(dut):
     contin = 1
     dut.ui_in.value = contin << 1
     halt = dut.uo_out.value >> 7
+    counter = 0
     while halt == 1:
         # Wait for one clock cycle to see the output values
         await ClockCycles(dut.clk, 1)
@@ -102,8 +103,8 @@ async def test_project(dut):
         halt = dut.uo_out.value >> 7
         dut._log.info("halted "+str(dut.uo_out.value))
     
-    while halt == 0:
-        dut._log.info("run out "+str(dut.uo_out.value)+" "+str(dut.uio_out.value))
+    while (halt == 0) and (counter < 100):
+        dut._log.info("run out "+str(dut.uo_out.value)+" "+str(dut.uio_out.value)+" counter="+str(counter))
         #halt = dut.uo_out.value >> 7
         #ma = dut.uo_out.value & 0x7f
         #write = dut.uio_out.value >>5
@@ -125,12 +126,13 @@ async def test_project(dut):
             membus = read_m(m,int(ma),int(ba))
             dut._log.info("read  "+str(membus)+" ma="+str(ma)+" ba="+str(ba))
  
-        dut.ui_in.value = (contin<<1)|membus
+        dut.ui_in.value = "000000"+str(contin)+str(membus)    #(contin<<1)|membus
         dut._log.info("run in "+str(dut.ui_in.value))
         contin = 0
 
         # Wait for one clock cycle to see the output values
         await ClockCycles(dut.clk, 1)
+        counter += 1
 
     log_m(m,dut)
 
