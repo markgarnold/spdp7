@@ -113,10 +113,13 @@ async def test_project(dut):
         if (halt == 0) and (write == 1):
             m=write_m(m,ma,ba,mb)
             membus = mb
+            dut._log.info("write "+mb)
         else:
             membus = read_m(m,ma,ba)
+            dut._log.info("read  "+membus)
  
         dut.ui_in.value = (contin<<1)|membus
+        dut._log.info("run in "+str(dut.ui_in.value))
         contin = 0
 
         # Wait for one clock cycle to see the output values
