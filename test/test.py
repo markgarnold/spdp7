@@ -88,6 +88,8 @@ async def test_project(dut):
     dut.rst_n.value = 1
 
     dut._log.info("Test project behavior PDP8")
+    await ClockCycles(dut.clk, 10)
+    await ClockCycles(dut.clk, 10)
     
     contin = 1
     dut.ui_in.value = contin << 1
