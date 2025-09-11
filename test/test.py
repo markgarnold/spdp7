@@ -18,10 +18,10 @@ def init_m():
     for i in range(0, 128):
         m.append(0)
 
-    m[0o0100] = 0o3510 #7300  # CLA
-    m[0o0101] = 0o0442 #1104  # TAD A
-    m[0o0102] = 0o1440 #3100 3105  # DCA B
-    m[0o0103] = 0o3601  #7402  # HLT
+    m[0o0100] = 0o7300  # CLA        3510 #
+    m[0o0101] = 0o1104  # TAD A      0442 #
+    m[0o0102] = 0o3105  # DCA B      1440 # 3100 
+    m[0o0103] = 0o7402  # HLT        3601  #
     m[0o0104] = 0o1234  # A, data to copy
     m[0o0105] = 0o0000  # B, loc where copy goes
     return m
@@ -129,7 +129,7 @@ async def test_project(dut):
         if ba==12:
             dut._log.info(oct(ma+0o10000)[3:]+'/'+oct(m[ma]+0o10000)[3:])
 
-        dut.ui_in.value = (contin<<1)|membus
+        dut.ui_in.setimmediatevalue((contin<<1)|membus)
         dut._log.info("run in="+str(dut.ui_in.value))
         contin = 0
 
@@ -139,7 +139,7 @@ async def test_project(dut):
 
     log_m(m,dut)
 
-    #assert m[0o0105] == 0o1234
-    assert m[0o0100] == 0o2470  # !=0o3510 
+    assert m[0o0105] == 0o1234
+    #assert m[0o0100] == 0o2470  # !=0o3510 
 
 
