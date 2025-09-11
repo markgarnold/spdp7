@@ -104,18 +104,24 @@ async def test_project(dut):
     
     while halt == 0:
         dut._log.info("run out "+str(dut.uo_out.value)+" "+str(dut.uio_out.value))
-        halt = dut.uo_out.value >> 7
-        ma = dut.uo_out.value & 0x7f
-        write = dut.uio_out.value >>5
-        mb = (dut.uio_out.value >> 4) & 1
-        ba = dut.uio_out.value & 0xf
+        #halt = dut.uo_out.value >> 7
+        #ma = dut.uo_out.value & 0x7f
+        #write = dut.uio_out.value >>5
+        #mb = (dut.uio_out.value >> 4) & 1
+        #ba = dut.uio_out.value & 0xf
+        
+        halt = dut.uo_out.value[7]
+        ma = dut.uo_out.value[6:0]
+        write = dut.uio_out.value[5]
+        mb = dut.uio_out.value[4]
+        ba = dut.uio_out.value[3:0]
         
         if (halt == 0) and (write == 0):  #active low write during run
-            m=write_m(m,ma,ba,mb)
-            membus = mb
+            m=write_m(m,int(ma),int(ba),int(mb))
+            membus = int(mb)
             dut._log.info("write "+str(mb)+" ma="+str(ma)+" ba="+str(ba))
         else:
-            membus = read_m(m,ma,ba)
+            membus = read_m(m,int(ma),int(ba))
             dut._log.info("read  "+str(membus)+" ma="+str(ma)+" ba="+str(ba))
  
         dut.ui_in.value = (contin<<1)|membus
