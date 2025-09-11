@@ -110,7 +110,7 @@ async def test_project(dut):
         mb = (dut.uio_out.value >> 4) & 1
         ba = dut.uio_out.value & 0xf
 
-        if (halt == 0) and (write == 1):
+        if (halt == 0) and (write == 0):  #active low write during run
             m=write_m(m,ma,ba,mb)
             membus = mb
             dut._log.info("write "+str(mb))
