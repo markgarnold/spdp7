@@ -72,6 +72,7 @@ def bitdisplay_m(m):
 
 @cocotb.test()
 async def test_project(dut):
+    m=init_m()
     dut._log.info("Start")
 
     # Set the clock period to 10 us (100 KHz)
