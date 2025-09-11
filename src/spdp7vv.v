@@ -82,7 +82,7 @@ module  pdp8_cpu(write,membus,contin,
         s_111,s_112,s_113,s_114,s_115,s_116,s_117,s_118,s_119,s_120,
         s_121,s_122,s_123,s_124,s_125,s_126,s_127,s_128,s_129,s_130,
         s_131,s_132,s_133,s_134,s_135,s_136,s_137,s_138,s_139,s_140,
-        s_141,s_142,s_143,s_144,s_145,s_146;
+        s_141,s_142,s_143,s_144,s_145,s_146,s_147,s_148;
   reg ff_999;
   always @(posedge sysclk or posedge reset)
     if (reset)
@@ -90,7 +90,7 @@ module  pdp8_cpu(write,membus,contin,
     else
       ff_999 <= 1;
   wire s_999 = ~ff_999;
-  assign s_1  = s_999|s_146;
+  assign s_1  = s_999|s_148;
   assign s_2  = s_1;
   wire tmp_3 = s_2;
   reg ff_3;
@@ -103,7 +103,7 @@ module  pdp8_cpu(write,membus,contin,
   assign s_4  = s_3;
   assign s_5  = s_4;
   assign s_6  = s_5;
-  assign s_7  = s_6|s_145;
+  assign s_7  = s_6|s_147;
   assign s_8  = s_7;
   wire tmp_9 = s_8;
   reg ff_9;
@@ -149,7 +149,7 @@ module  pdp8_cpu(write,membus,contin,
     else
       ff_25 <= tmp_25;
   assign s_25 = ff_25;
-  wire tmp_26 = s_25|s_33;
+  wire tmp_26 = s_25|s_34;
   wire qual_26 = (ba!=11);
   assign s_26 = tmp_26&(~qual_26);
   wire  sT_26 = tmp_26&qual_26;
@@ -162,85 +162,92 @@ module  pdp8_cpu(write,membus,contin,
     else
       ff_28 <= tmp_28;
   assign s_28 = ff_28;
-  assign s_29  = s_28;
+  wire tmp_29 = s_28;
+  reg ff_29;
+  always @(posedge sysclk or posedge reset)
+    if (reset)
+      ff_29 <= 0;
+    else
+      ff_29 <= tmp_29;
+  assign s_29 = ff_29;
   assign s_30  = s_29;
   assign s_31  = s_30;
   assign s_32  = s_31;
   assign s_33  = s_32;
-  wire tmp_34 = s_26;
-  reg ff_34;
+  assign s_34  = s_33;
+  wire tmp_35 = s_26;
+  reg ff_35;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_34 <= 0;
+      ff_35 <= 0;
     else
-      ff_34 <= tmp_34;
-  assign s_34 = ff_34;
-  assign s_35  = s_34;
+      ff_35 <= tmp_35;
+  assign s_35 = ff_35;
   assign s_36  = s_35;
   assign s_37  = s_36;
   assign s_38  = s_37;
-  wire tmp_39 = s_38;
-  wire qual_39 = (ir[11:9]==1);
-  assign s_39 = tmp_39&(~qual_39);
-  wire  sT_39 = tmp_39&qual_39;
-  assign s_40  = sT_39;
-  wire tmp_41 = s_40|s_47;
-  wire qual_41 = (ba!=11);
-  assign s_41 = tmp_41&(~qual_41);
-  wire  sT_41 = tmp_41&qual_41;
-  assign s_42  = sT_41;
-  wire tmp_43 = s_42;
-  reg ff_43;
+  assign s_39  = s_38;
+  wire tmp_40 = s_39;
+  wire qual_40 = (ir[11:9]==1);
+  assign s_40 = tmp_40&(~qual_40);
+  wire  sT_40 = tmp_40&qual_40;
+  assign s_41  = sT_40;
+  wire tmp_42 = s_41|s_49;
+  wire qual_42 = (ba!=11);
+  assign s_42 = tmp_42&(~qual_42);
+  wire  sT_42 = tmp_42&qual_42;
+  assign s_43  = sT_42;
+  wire tmp_44 = s_43;
+  reg ff_44;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_43 <= 0;
+      ff_44 <= 0;
     else
-      ff_43 <= tmp_43;
-  assign s_43 = ff_43;
-  assign s_44  = s_43;
-  assign s_45  = s_44;
+      ff_44 <= tmp_44;
+  assign s_44 = ff_44;
+  wire tmp_45 = s_44;
+  reg ff_45;
+  always @(posedge sysclk or posedge reset)
+    if (reset)
+      ff_45 <= 0;
+    else
+      ff_45 <= tmp_45;
+  assign s_45 = ff_45;
   assign s_46  = s_45;
   assign s_47  = s_46;
-  wire tmp_48 = s_41;
-  reg ff_48;
+  assign s_48  = s_47;
+  assign s_49  = s_48;
+  wire tmp_50 = s_42;
+  reg ff_50;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_48 <= 0;
+      ff_50 <= 0;
     else
-      ff_48 <= tmp_48;
-  assign s_48 = ff_48;
-  assign s_49  = s_48;
-  assign s_50  = s_49;
-  assign s_51  = s_39;
+      ff_50 <= tmp_50;
+  assign s_50 = ff_50;
+  assign s_51  = s_50;
   assign s_52  = s_51;
-  wire tmp_53 = s_52;
-  wire qual_53 = (ir[11:9]==3);
-  assign s_53 = tmp_53&(~qual_53);
-  wire  sT_53 = tmp_53&qual_53;
-  assign s_54  = sT_53;
-  wire tmp_55 = s_54|s_65;
-  wire qual_55 = (ba!=11);
+  assign s_53  = s_40;
+  assign s_54  = s_53;
+  wire tmp_55 = s_54;
+  wire qual_55 = (ir[11:9]==3);
   assign s_55 = tmp_55&(~qual_55);
   wire  sT_55 = tmp_55&qual_55;
   assign s_56  = sT_55;
-  wire tmp_57 = s_56;
-  reg ff_57;
+  wire tmp_57 = s_56|s_67;
+  wire qual_57 = (ba!=11);
+  assign s_57 = tmp_57&(~qual_57);
+  wire  sT_57 = tmp_57&qual_57;
+  assign s_58  = sT_57;
+  wire tmp_59 = s_58;
+  reg ff_59;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_57 <= 0;
+      ff_59 <= 0;
     else
-      ff_57 <= tmp_57;
-  assign s_57 = ff_57;
-  assign s_58  = s_57;
-  assign s_59  = s_58;
-  wire tmp_60 = s_59;
-  reg ff_60;
-  always @(posedge sysclk or posedge reset)
-    if (reset)
-      ff_60 <= 0;
-    else
-      ff_60 <= tmp_60;
-  assign s_60 = ff_60;
+      ff_59 <= tmp_59;
+  assign s_59 = ff_59;
+  assign s_60  = s_59;
   assign s_61  = s_60;
   wire tmp_62 = s_61;
   reg ff_62;
@@ -251,261 +258,270 @@ module  pdp8_cpu(write,membus,contin,
       ff_62 <= tmp_62;
   assign s_62 = ff_62;
   assign s_63  = s_62;
-  assign s_64  = s_63;
-  assign s_65  = s_64;
-  assign s_66  = s_55;
-  assign s_67  = s_53;
-  assign s_68  = s_67;
-  wire tmp_69 = s_68;
-  wire qual_69 = (ir[11:9]==5);
-  assign s_69 = tmp_69&(~qual_69);
-  wire  sT_69 = tmp_69&qual_69;
-  assign s_70  = sT_69;
-  wire tmp_71 = s_70;
-  reg ff_71;
+  wire tmp_64 = s_63;
+  reg ff_64;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_71 <= 0;
+      ff_64 <= 0;
     else
-      ff_71 <= tmp_71;
-  assign s_71 = ff_71;
-  assign s_72  = s_71;
-  assign s_73  = s_72;
-  assign s_74  = s_69;
+      ff_64 <= tmp_64;
+  assign s_64 = ff_64;
+  assign s_65  = s_64;
+  assign s_66  = s_65;
+  assign s_67  = s_66;
+  assign s_68  = s_57;
+  assign s_69  = s_55;
+  assign s_70  = s_69;
+  wire tmp_71 = s_70;
+  wire qual_71 = (ir[11:9]==5);
+  assign s_71 = tmp_71&(~qual_71);
+  wire  sT_71 = tmp_71&qual_71;
+  assign s_72  = sT_71;
+  wire tmp_73 = s_72;
+  reg ff_73;
+  always @(posedge sysclk or posedge reset)
+    if (reset)
+      ff_73 <= 0;
+    else
+      ff_73 <= tmp_73;
+  assign s_73 = ff_73;
+  assign s_74  = s_73;
   assign s_75  = s_74;
-  wire tmp_76 = s_75;
-  wire qual_76 = (ir[11:9]==7);
-  assign s_76 = tmp_76&(~qual_76);
-  wire  sT_76 = tmp_76&qual_76;
-  assign s_77  = sT_76;
+  assign s_76  = s_71;
+  assign s_77  = s_76;
   wire tmp_78 = s_77;
-  wire qual_78 = (ir[8]);
+  wire qual_78 = (ir[11:9]==7);
   assign s_78 = tmp_78&(~qual_78);
   wire  sT_78 = tmp_78&qual_78;
   assign s_79  = sT_78;
   wire tmp_80 = s_79;
-  wire qual_80 = (ir[1]);
+  wire qual_80 = (ir[8]);
   assign s_80 = tmp_80&(~qual_80);
   wire  sT_80 = tmp_80&qual_80;
   assign s_81  = sT_80;
   wire tmp_82 = s_81;
-  reg ff_82;
+  wire qual_82 = (ir[1]);
+  assign s_82 = tmp_82&(~qual_82);
+  wire  sT_82 = tmp_82&qual_82;
+  assign s_83  = sT_82;
+  wire tmp_84 = s_83;
+  reg ff_84;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_82 <= 0;
+      ff_84 <= 0;
     else
-      ff_82 <= tmp_82;
-  assign s_82 = ff_82;
-  assign s_83  = s_82;
-  assign s_84  = s_83|s_80;
-  wire tmp_85 = s_84;
-  wire qual_85 = (ir[3]^(ir[6]&lac[11]|ir[5]&(lac[11:0]==0)|ir[4]&lac[12]));
-  assign s_85 = tmp_85&(~qual_85);
-  wire  sT_85 = tmp_85&qual_85;
-  assign s_86  = sT_85;
-  wire tmp_87 = s_86|s_93;
-  wire qual_87 = (ba!=11);
+      ff_84 <= tmp_84;
+  assign s_84 = ff_84;
+  assign s_85  = s_84;
+  assign s_86  = s_85|s_82;
+  wire tmp_87 = s_86;
+  wire qual_87 = (ir[3]^(ir[6]&lac[11]|ir[5]&(lac[11:0]==0)|ir[4]&lac[12]));
   assign s_87 = tmp_87&(~qual_87);
   wire  sT_87 = tmp_87&qual_87;
   assign s_88  = sT_87;
-  wire tmp_89 = s_88;
-  reg ff_89;
+  wire tmp_89 = s_88|s_95;
+  wire qual_89 = (ba!=11);
+  assign s_89 = tmp_89&(~qual_89);
+  wire  sT_89 = tmp_89&qual_89;
+  assign s_90  = sT_89;
+  wire tmp_91 = s_90;
+  reg ff_91;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_89 <= 0;
+      ff_91 <= 0;
     else
-      ff_89 <= tmp_89;
-  assign s_89 = ff_89;
-  assign s_90  = s_89;
-  assign s_91  = s_90;
+      ff_91 <= tmp_91;
+  assign s_91 = ff_91;
   assign s_92  = s_91;
   assign s_93  = s_92;
-  assign s_94  = s_87|s_85;
+  assign s_94  = s_93;
   assign s_95  = s_94;
-  assign s_96  = s_78;
+  assign s_96  = s_89|s_87;
   assign s_97  = s_96;
-  wire tmp_98 = s_97;
-  wire qual_98 = (ir[7]);
-  assign s_98 = tmp_98&(~qual_98);
-  wire  sT_98 = tmp_98&qual_98;
-  assign s_99  = sT_98;
+  assign s_98  = s_80;
+  assign s_99  = s_98;
   wire tmp_100 = s_99;
-  reg ff_100;
+  wire qual_100 = (ir[7]);
+  assign s_100 = tmp_100&(~qual_100);
+  wire  sT_100 = tmp_100&qual_100;
+  assign s_101  = sT_100;
+  wire tmp_102 = s_101;
+  reg ff_102;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_100 <= 0;
+      ff_102 <= 0;
     else
-      ff_100 <= tmp_100;
-  assign s_100 = ff_100;
-  assign s_101  = s_100;
-  assign s_102  = s_101|s_98;
-  wire tmp_103 = s_102;
-  wire qual_103 = (ir[6]);
-  assign s_103 = tmp_103&(~qual_103);
-  wire  sT_103 = tmp_103&qual_103;
-  assign s_104  = sT_103;
+      ff_102 <= tmp_102;
+  assign s_102 = ff_102;
+  assign s_103  = s_102;
+  assign s_104  = s_103|s_100;
   wire tmp_105 = s_104;
-  reg ff_105;
+  wire qual_105 = (ir[6]);
+  assign s_105 = tmp_105&(~qual_105);
+  wire  sT_105 = tmp_105&qual_105;
+  assign s_106  = sT_105;
+  wire tmp_107 = s_106;
+  reg ff_107;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_105 <= 0;
+      ff_107 <= 0;
     else
-      ff_105 <= tmp_105;
-  assign s_105 = ff_105;
-  assign s_106  = s_105;
-  assign s_107  = s_106|s_103;
-  wire tmp_108 = s_107;
-  wire qual_108 = (ir[5]);
-  assign s_108 = tmp_108&(~qual_108);
-  wire  sT_108 = tmp_108&qual_108;
-  assign s_109  = sT_108;
+      ff_107 <= tmp_107;
+  assign s_107 = ff_107;
+  assign s_108  = s_107;
+  assign s_109  = s_108|s_105;
   wire tmp_110 = s_109;
-  reg ff_110;
+  wire qual_110 = (ir[5]);
+  assign s_110 = tmp_110&(~qual_110);
+  wire  sT_110 = tmp_110&qual_110;
+  assign s_111  = sT_110;
+  wire tmp_112 = s_111;
+  reg ff_112;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_110 <= 0;
+      ff_112 <= 0;
     else
-      ff_110 <= tmp_110;
-  assign s_110 = ff_110;
-  assign s_111  = s_110;
-  assign s_112  = s_111|s_108;
-  wire tmp_113 = s_112;
-  wire qual_113 = (ir[4]);
-  assign s_113 = tmp_113&(~qual_113);
-  wire  sT_113 = tmp_113&qual_113;
-  assign s_114  = sT_113;
+      ff_112 <= tmp_112;
+  assign s_112 = ff_112;
+  assign s_113  = s_112;
+  assign s_114  = s_113|s_110;
   wire tmp_115 = s_114;
-  reg ff_115;
+  wire qual_115 = (ir[4]);
+  assign s_115 = tmp_115&(~qual_115);
+  wire  sT_115 = tmp_115&qual_115;
+  assign s_116  = sT_115;
+  wire tmp_117 = s_116;
+  reg ff_117;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_115 <= 0;
+      ff_117 <= 0;
     else
-      ff_115 <= tmp_115;
-  assign s_115 = ff_115;
-  assign s_116  = s_115;
-  assign s_117  = s_116|s_113;
-  wire tmp_118 = s_117;
-  wire qual_118 = (ir[0]);
-  assign s_118 = tmp_118&(~qual_118);
-  wire  sT_118 = tmp_118&qual_118;
-  assign s_119  = sT_118;
-  wire tmp_120 = s_119|s_126;
-  wire qual_120 = (ba!=11);
+      ff_117 <= tmp_117;
+  assign s_117 = ff_117;
+  assign s_118  = s_117;
+  assign s_119  = s_118|s_115;
+  wire tmp_120 = s_119;
+  wire qual_120 = (ir[0]);
   assign s_120 = tmp_120&(~qual_120);
   wire  sT_120 = tmp_120&qual_120;
   assign s_121  = sT_120;
-  wire tmp_122 = s_121;
-  reg ff_122;
+  wire tmp_122 = s_121|s_128;
+  wire qual_122 = (ba!=11);
+  assign s_122 = tmp_122&(~qual_122);
+  wire  sT_122 = tmp_122&qual_122;
+  assign s_123  = sT_122;
+  wire tmp_124 = s_123;
+  reg ff_124;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_122 <= 0;
+      ff_124 <= 0;
     else
-      ff_122 <= tmp_122;
-  assign s_122 = ff_122;
-  assign s_123  = s_122;
-  assign s_124  = s_123;
+      ff_124 <= tmp_124;
+  assign s_124 = ff_124;
   assign s_125  = s_124;
   assign s_126  = s_125;
-  wire tmp_127 = s_120;
-  reg ff_127;
-  always @(posedge sysclk or posedge reset)
-    if (reset)
-      ff_127 <= 0;
-    else
-      ff_127 <= tmp_127;
-  assign s_127 = ff_127;
+  assign s_127  = s_126;
   assign s_128  = s_127;
-  assign s_129  = s_128|s_118;
-  wire tmp_130 = s_129;
-  reg ff_130;
+  wire tmp_129 = s_122;
+  reg ff_129;
   always @(posedge sysclk or posedge reset)
     if (reset)
-      ff_130 <= 0;
+      ff_129 <= 0;
     else
-      ff_130 <= tmp_130;
-  assign s_130 = ff_130;
-  wire tmp_131 = s_130;
-  wire qual_131 = (ir[2]);
-  assign s_131 = tmp_131&(~qual_131);
-  wire  sT_131 = tmp_131&qual_131;
-  assign s_132  = sT_131;
-  assign s_133  = s_132;
-  assign s_134  = s_133|s_131;
-  wire tmp_135 = s_134;
-  wire qual_135 = (ir[3]);
-  assign s_135 = tmp_135&(~qual_135);
-  wire  sT_135 = tmp_135&qual_135;
-  assign s_136  = sT_135;
-  assign s_137  = s_136;
-  assign s_138  = s_137|s_135;
-  assign s_139  = s_138|s_95;
-  assign s_140  = s_139|s_76;
-  assign s_141  = s_140|s_73;
-  assign s_142  = s_141|s_66;
-  assign s_143  = s_142|s_50;
-  assign s_144  = s_143|s_22;
-  assign s_145  = s_144;
-  assign s_146  = 1'b0;
+      ff_129 <= tmp_129;
+  assign s_129 = ff_129;
+  assign s_130  = s_129;
+  assign s_131  = s_130|s_120;
+  wire tmp_132 = s_131;
+  reg ff_132;
+  always @(posedge sysclk or posedge reset)
+    if (reset)
+      ff_132 <= 0;
+    else
+      ff_132 <= tmp_132;
+  assign s_132 = ff_132;
+  wire tmp_133 = s_132;
+  wire qual_133 = (ir[2]);
+  assign s_133 = tmp_133&(~qual_133);
+  wire  sT_133 = tmp_133&qual_133;
+  assign s_134  = sT_133;
+  assign s_135  = s_134;
+  assign s_136  = s_135|s_133;
+  wire tmp_137 = s_136;
+  wire qual_137 = (ir[3]);
+  assign s_137 = tmp_137&(~qual_137);
+  wire  sT_137 = tmp_137&qual_137;
+  assign s_138  = sT_137;
+  assign s_139  = s_138;
+  assign s_140  = s_139|s_137;
+  assign s_141  = s_140|s_97;
+  assign s_142  = s_141|s_78;
+  assign s_143  = s_142|s_75;
+  assign s_144  = s_143|s_68;
+  assign s_145  = s_144|s_52;
+  assign s_146  = s_145|s_22;
+  assign s_147  = s_146;
+  assign s_148  = 1'b0;
 
   always @(posedge sysclk)
    begin
-     if(s_11|s_32|s_36|s_46|s_63|s_92|s_125)
+     if(s_11|s_33|s_37|s_48|s_65|s_94|s_127)
         ba <= 
              s_11 ?  0  :
-             s_32 ?  ba+1  :
-             s_36 ?  0  :
-             s_46 ?  ba+1  :
-             s_63 ?  ba+1  :
-             s_92 ?  ba+1  :
+             s_33 ?  ba+1  :
+             s_37 ?  0  :
+             s_48 ?  ba+1  :
+             s_65 ?  ba+1  :
+             s_94 ?  ba+1  :
              ba+1 ;
-     if(s_12|s_31|s_91|s_38|s_124|s_45)
+     if(s_12|s_32|s_93|s_39|s_126|s_47)
         c <= 
              s_12 ?  1  :
-             s_31 ?  car(pc[0],0,c)  :
-             s_91 ?  car(pc[0],0,c)  :
-             s_38 ?  ir[10]  :
-             s_124 ?  car(lac[0],0,c)  :
+             s_32 ?  car(pc[0],0,c)  :
+             s_93 ?  car(pc[0],0,c)  :
+             s_39 ?  ir[10]  :
+             s_126 ?  car(lac[0],0,c)  :
              car(lac[0],membus,c) ;
-     if(s_4|s_83|s_18)
+     if(s_4|s_85|s_18)
         halt <= 
              s_4 ?  1  :
-             s_83 ?  1  :
+             s_85 ?  1  :
              0 ;
-     if(s_29)
+     if(s_30)
         ir <= 
              {membus,ir[11:1]} ;
-     if(s_44|s_101|s_106|s_111|s_116|s_123|s_49|s_58|s_128|s_133|s_137)
+     if(s_46|s_103|s_108|s_113|s_118|s_125|s_51|s_60|s_130|s_135|s_139)
         lac <= 
-             s_44 ?  {sum(lac[0],membus,c),lac[12:1]}  :
-             s_101 ?  {lac[12],12'b0}  :
-             s_106 ?  {1'b0,lac[11:0]}  :
-             s_111 ?  {lac[12],~lac[11:0]}  :
-             s_116 ?  {~lac[12],lac[11:0]}  :
-             s_123 ?  {sum(lac[0],0,c),lac[12:1]}  :
-             s_49 ?  {sum(lac[0],0,c),lac[12:1]}  :
-             s_58 ?  {lac[12],1'b0,lac[11:1]}  :
-             s_128 ?  {sum(lac[0],0,c),lac[12:1]}  :
-             s_133 ?  {lac[11:0],lac[12]}  :
+             s_46 ?  {sum(lac[0],membus,c),lac[12:1]}  :
+             s_103 ?  {lac[12],12'b0}  :
+             s_108 ?  {1'b0,lac[11:0]}  :
+             s_113 ?  {lac[12],~lac[11:0]}  :
+             s_118 ?  {~lac[12],lac[11:0]}  :
+             s_125 ?  {sum(lac[0],0,c),lac[12:1]}  :
+             s_51 ?  {sum(lac[0],0,c),lac[12:1]}  :
+             s_60 ?  {lac[12],1'b0,lac[11:1]}  :
+             s_130 ?  {sum(lac[0],0,c),lac[12:1]}  :
+             s_135 ?  {lac[11:0],lac[12]}  :
              {lac[0],lac[12:1]} ;
-     if(s_19|s_10|s_35)
+     if(s_19|s_10|s_36)
         ma <= 
              s_19 ?  pc  :
              s_10 ?  pc  :
              ea(ir) ;
-     if(s_20|s_64|s_37)
+     if(s_20|s_66|s_38)
         mb <= 
              s_20 ?  0  :
-             s_64 ?  lac[0]  :
+             s_66 ?  lac[0]  :
              lac[0] ;
-     if(s_6|s_72|s_30|s_90)
+     if(s_6|s_74|s_31|s_92)
         pc <= 
              s_6 ?  12'o0100  :
-             s_72 ?  ma  :
-             s_30 ?  {sum(pc[0],0,c),pc[11:1]}  :
+             s_74 ?  ma  :
+             s_31 ?  {sum(pc[0],0,c),pc[11:1]}  :
              {sum(pc[0],0,c),pc[11:1]} ;
-     if(s_61|s_5|s_59)
+     if(s_63|s_5|s_61)
         write <= 
-             s_61 ?  1  :
+             s_63 ?  1  :
              s_5 ?  1  :
              0 ;
    end
@@ -514,13 +530,13 @@ endmodule
 //
 //  Comefrom Table for module number 1:
 //
-//   1: 999 146 always
+//   1: 999 148 always
 //   2:   1   0 begin
 //   3:   2   0 @(posedge sysclk) #1 ;
 //   4:   3   0 halt<=@(posedge sysclk) 1;
 //   5:   4   0 write<=@(posedge sysclk) 1;
 //   6:   5   0 pc<=@(posedge sysclk) 12'o0100;
-//   7:   6 145 forever
+//   7:   6 147 forever
 //   8:   7   0 begin
 //   9:   8   0 @(posedge sysclk) #1 ;
 //  10:   9   0 ma<=@(posedge sysclk) pc;
@@ -539,124 +555,126 @@ endmodule
 //  23:  13   0 else
 //  24:  23   0 begin
 //  25:  24   0 @(posedge sysclk) #1 ;
-//  26:  25  33 while(ba!=11)
+//  26:  25  34 while(ba!=11)
 //  27: -26   0 begin
 //  28:  27   0 @(posedge sysclk) #1 ;
-//  29:  28   0 ir<=@(posedge sysclk) {membus,ir[11:1]};
-//  30:  29   0 pc<=@(posedge sysclk) {sum(pc[0],0,c),pc[11:1]};
-//  31:  30   0 c<=@(posedge sysclk) car(pc[0],0,c);
-//  32:  31   0 ba<=@(posedge sysclk) ba+1;
-//  33:  32   0 end
-//  34:  26   0 @(posedge sysclk) #1 ;
-//  35:  34   0 ma<=@(posedge sysclk) ea(ir);
-//  36:  35   0 ba<=@(posedge sysclk) 0;
-//  37:  36   0 mb<=@(posedge sysclk) lac[0];
-//  38:  37   0 c<=@(posedge sysclk) ir[10];
-//  39:  38   0 if(ir[11:9]==1)
-//  40: -39   0 begin
-//  41:  40  47 while(ba!=11)
-//  42: -41   0 begin
-//  43:  42   0 @(posedge sysclk) #1 ;
-//  44:  43   0 lac<=@(posedge sysclk) {sum(lac[0],membus,c),lac[12:1]};
-//  45:  44   0 c<=@(posedge sysclk) car(lac[0],membus,c);
-//  46:  45   0 ba<=@(posedge sysclk) ba+1;
-//  47:  46   0 end
-//  48:  41   0 @(posedge sysclk) #1 ;
-//  49:  48   0 lac<=@(posedge sysclk) {sum(lac[0],0,c),lac[12:1]};
-//  50:  49   0 end
-//  51:  39   0 else
-//  52:  51   0 begin
-//  53:  52   0 if(ir[11:9]==3)
-//  54: -53   0 begin
-//  55:  54  65 while(ba!=11)
+//  29:  28   0 @(posedge sysclk) #1 ;
+//  30:  29   0 ir<=@(posedge sysclk) {membus,ir[11:1]};
+//  31:  30   0 pc<=@(posedge sysclk) {sum(pc[0],0,c),pc[11:1]};
+//  32:  31   0 c<=@(posedge sysclk) car(pc[0],0,c);
+//  33:  32   0 ba<=@(posedge sysclk) ba+1;
+//  34:  33   0 end
+//  35:  26   0 @(posedge sysclk) #1 ;
+//  36:  35   0 ma<=@(posedge sysclk) ea(ir);
+//  37:  36   0 ba<=@(posedge sysclk) 0;
+//  38:  37   0 mb<=@(posedge sysclk) lac[0];
+//  39:  38   0 c<=@(posedge sysclk) ir[10];
+//  40:  39   0 if(ir[11:9]==1)
+//  41: -40   0 begin
+//  42:  41  49 while(ba!=11)
+//  43: -42   0 begin
+//  44:  43   0 @(posedge sysclk) #1 ;
+//  45:  44   0 @(posedge sysclk) #1 ;
+//  46:  45   0 lac<=@(posedge sysclk) {sum(lac[0],membus,c),lac[12:1]};
+//  47:  46   0 c<=@(posedge sysclk) car(lac[0],membus,c);
+//  48:  47   0 ba<=@(posedge sysclk) ba+1;
+//  49:  48   0 end
+//  50:  42   0 @(posedge sysclk) #1 ;
+//  51:  50   0 lac<=@(posedge sysclk) {sum(lac[0],0,c),lac[12:1]};
+//  52:  51   0 end
+//  53:  40   0 else
+//  54:  53   0 begin
+//  55:  54   0 if(ir[11:9]==3)
 //  56: -55   0 begin
-//  57:  56   0 @(posedge sysclk) #1 ;
-//  58:  57   0 lac<=@(posedge sysclk) {lac[12],1'b0,lac[11:1]};
-//  59:  58   0 write<=@(posedge sysclk) 0;
-//  60:  59   0 @(posedge sysclk) #1 ;
-//  61:  60   0 write<=@(posedge sysclk) 1;
+//  57:  56  67 while(ba!=11)
+//  58: -57   0 begin
+//  59:  58   0 @(posedge sysclk) #1 ;
+//  60:  59   0 lac<=@(posedge sysclk) {lac[12],1'b0,lac[11:1]};
+//  61:  60   0 write<=@(posedge sysclk) 0;
 //  62:  61   0 @(posedge sysclk) #1 ;
-//  63:  62   0 ba<=@(posedge sysclk) ba+1;
-//  64:  63   0 mb<=@(posedge sysclk) lac[0];
-//  65:  64   0 end
-//  66:  55   0 end
-//  67:  53   0 else
-//  68:  67   0 begin
-//  69:  68   0 if(ir[11:9]==5)
-//  70: -69   0 begin
-//  71:  70   0 @(posedge sysclk) #1 ;
-//  72:  71   0 pc<=@(posedge sysclk) ma;
-//  73:  72   0 end
-//  74:  69   0 else
-//  75:  74   0 begin
-//  76:  75   0 if(ir[11:9]==7)
-//  77: -76   0 begin
-//  78:  77   0 if(ir[8])
+//  63:  62   0 write<=@(posedge sysclk) 1;
+//  64:  63   0 @(posedge sysclk) #1 ;
+//  65:  64   0 ba<=@(posedge sysclk) ba+1;
+//  66:  65   0 mb<=@(posedge sysclk) lac[0];
+//  67:  66   0 end
+//  68:  57   0 end
+//  69:  55   0 else
+//  70:  69   0 begin
+//  71:  70   0 if(ir[11:9]==5)
+//  72: -71   0 begin
+//  73:  72   0 @(posedge sysclk) #1 ;
+//  74:  73   0 pc<=@(posedge sysclk) ma;
+//  75:  74   0 end
+//  76:  71   0 else
+//  77:  76   0 begin
+//  78:  77   0 if(ir[11:9]==7)
 //  79: -78   0 begin
-//  80:  79   0 if(ir[1])
+//  80:  79   0 if(ir[8])
 //  81: -80   0 begin
-//  82:  81   0 @(posedge sysclk) #1 ;
-//  83:  82   0 halt<=@(posedge sysclk) 1;
-//  84:  83  80 end
-//  85:  84   0 if(ir[3]^(ir[6]&lac[11]|ir[5]&(lac[11:0]==0)|ir[4]&lac[12]))
-//  86: -85   0 begin
-//  87:  86  93 while(ba!=11)
+//  82:  81   0 if(ir[1])
+//  83: -82   0 begin
+//  84:  83   0 @(posedge sysclk) #1 ;
+//  85:  84   0 halt<=@(posedge sysclk) 1;
+//  86:  85  82 end
+//  87:  86   0 if(ir[3]^(ir[6]&lac[11]|ir[5]&(lac[11:0]==0)|ir[4]&lac[12]))
 //  88: -87   0 begin
-//  89:  88   0 @(posedge sysclk) #1 ;
-//  90:  89   0 pc<=@(posedge sysclk) {sum(pc[0],0,c),pc[11:1]};
-//  91:  90   0 c<=@(posedge sysclk) car(pc[0],0,c);
-//  92:  91   0 ba<=@(posedge sysclk) ba+1;
-//  93:  92   0 end
-//  94:  87  85 end
+//  89:  88  95 while(ba!=11)
+//  90: -89   0 begin
+//  91:  90   0 @(posedge sysclk) #1 ;
+//  92:  91   0 pc<=@(posedge sysclk) {sum(pc[0],0,c),pc[11:1]};
+//  93:  92   0 c<=@(posedge sysclk) car(pc[0],0,c);
+//  94:  93   0 ba<=@(posedge sysclk) ba+1;
 //  95:  94   0 end
-//  96:  78   0 else
-//  97:  96   0 begin
-//  98:  97   0 if(ir[7])
-//  99: -98   0 begin
-// 100:  99   0 @(posedge sysclk) #1 ;
-// 101: 100   0 lac<=@(posedge sysclk) {lac[12],12'b0};
-// 102: 101  98 end
-// 103: 102   0 if(ir[6])
-// 104: -103   0 begin
-// 105: 104   0 @(posedge sysclk) #1 ;
-// 106: 105   0 lac<=@(posedge sysclk) {1'b0,lac[11:0]};
-// 107: 106 103 end
-// 108: 107   0 if(ir[5])
-// 109: -108   0 begin
-// 110: 109   0 @(posedge sysclk) #1 ;
-// 111: 110   0 lac<=@(posedge sysclk) {lac[12],~lac[11:0]};
-// 112: 111 108 end
-// 113: 112   0 if(ir[4])
-// 114: -113   0 begin
-// 115: 114   0 @(posedge sysclk) #1 ;
-// 116: 115   0 lac<=@(posedge sysclk) {~lac[12],lac[11:0]};
-// 117: 116 113 end
-// 118: 117   0 if(ir[0])
-// 119: -118   0 begin
-// 120: 119 126 while(ba!=11)
+//  96:  89  87 end
+//  97:  96   0 end
+//  98:  80   0 else
+//  99:  98   0 begin
+// 100:  99   0 if(ir[7])
+// 101: -100   0 begin
+// 102: 101   0 @(posedge sysclk) #1 ;
+// 103: 102   0 lac<=@(posedge sysclk) {lac[12],12'b0};
+// 104: 103 100 end
+// 105: 104   0 if(ir[6])
+// 106: -105   0 begin
+// 107: 106   0 @(posedge sysclk) #1 ;
+// 108: 107   0 lac<=@(posedge sysclk) {1'b0,lac[11:0]};
+// 109: 108 105 end
+// 110: 109   0 if(ir[5])
+// 111: -110   0 begin
+// 112: 111   0 @(posedge sysclk) #1 ;
+// 113: 112   0 lac<=@(posedge sysclk) {lac[12],~lac[11:0]};
+// 114: 113 110 end
+// 115: 114   0 if(ir[4])
+// 116: -115   0 begin
+// 117: 116   0 @(posedge sysclk) #1 ;
+// 118: 117   0 lac<=@(posedge sysclk) {~lac[12],lac[11:0]};
+// 119: 118 115 end
+// 120: 119   0 if(ir[0])
 // 121: -120   0 begin
-// 122: 121   0 @(posedge sysclk) #1 ;
-// 123: 122   0 lac<=@(posedge sysclk) {sum(lac[0],0,c),lac[12:1]};
-// 124: 123   0 c<=@(posedge sysclk) car(lac[0],0,c);
-// 125: 124   0 ba<=@(posedge sysclk) ba+1;
-// 126: 125   0 end
-// 127: 120   0 @(posedge sysclk) #1 ;
-// 128: 127   0 lac<=@(posedge sysclk) {sum(lac[0],0,c),lac[12:1]};
-// 129: 128 118 end
-// 130: 129   0 @(posedge sysclk) #1 ;
-// 131: 130   0 if(ir[2])
-// 132: -131   0 begin
-// 133: 132   0 lac<=@(posedge sysclk) {lac[11:0],lac[12]};
-// 134: 133 131 end
-// 135: 134   0 if(ir[3])
-// 136: -135   0 begin
-// 137: 136   0 lac<=@(posedge sysclk) {lac[0],lac[12:1]};
-// 138: 137 135 end
-// 139: 138  95 end
-// 140: 139  76 end
-// 141: 140  73 end
-// 142: 141  66 end
-// 143: 142  50 end
-// 144: 143  22 end
-// 145: 144   0 end
-// 146:   0   0 end
+// 122: 121 128 while(ba!=11)
+// 123: -122   0 begin
+// 124: 123   0 @(posedge sysclk) #1 ;
+// 125: 124   0 lac<=@(posedge sysclk) {sum(lac[0],0,c),lac[12:1]};
+// 126: 125   0 c<=@(posedge sysclk) car(lac[0],0,c);
+// 127: 126   0 ba<=@(posedge sysclk) ba+1;
+// 128: 127   0 end
+// 129: 122   0 @(posedge sysclk) #1 ;
+// 130: 129   0 lac<=@(posedge sysclk) {sum(lac[0],0,c),lac[12:1]};
+// 131: 130 120 end
+// 132: 131   0 @(posedge sysclk) #1 ;
+// 133: 132   0 if(ir[2])
+// 134: -133   0 begin
+// 135: 134   0 lac<=@(posedge sysclk) {lac[11:0],lac[12]};
+// 136: 135 133 end
+// 137: 136   0 if(ir[3])
+// 138: -137   0 begin
+// 139: 138   0 lac<=@(posedge sysclk) {lac[0],lac[12:1]};
+// 140: 139 137 end
+// 141: 140  97 end
+// 142: 141  78 end
+// 143: 142  75 end
+// 144: 143  68 end
+// 145: 144  52 end
+// 146: 145  22 end
+// 147: 146   0 end
+// 148:   0   0 end
