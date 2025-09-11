@@ -103,7 +103,7 @@ async def test_project(dut):
         dut._log.info("halted "+str(dut.uo_out.value))
     
     while halt == 0:
-        dut._log.info("running "+str(dut.uo_out.value)+" "+str(dut.uio_out.value))
+        dut._log.info("run out "+str(dut.uo_out.value)+" "+str(dut.uio_out.value))
         halt = dut.uo_out.value >> 7
         ma = dut.uo_out.value & 0x7f
         write = dut.uio_out.value >>5
@@ -113,10 +113,10 @@ async def test_project(dut):
         if (halt == 0) and (write == 1):
             m=write_m(m,ma,ba,mb)
             membus = mb
-            dut._log.info("write "+mb)
+            dut._log.info("write "+str(mb))
         else:
             membus = read_m(m,ma,ba)
-            dut._log.info("read  "+membus)
+            dut._log.info("read  "+str(membus))
  
         dut.ui_in.value = (contin<<1)|membus
         dut._log.info("run in "+str(dut.ui_in.value))
