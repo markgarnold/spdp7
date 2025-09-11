@@ -110,12 +110,12 @@ async def test_project(dut):
         #mb = (dut.uio_out.value >> 4) & 1
         #ba = dut.uio_out.value & 0xf
 
-        #big endian vs little endian
+        #big endian (cocotb) + little endian (verilog PDP8) = 8 for byte
         halt = dut.uo_out.value[0]   #[7]
-        ma = dut.uo_out.value[1:8]    #[6:]
+        ma = dut.uo_out.value[1:7]    #[6:0]
         write = dut.uio_out.value[2] #[5]
         mb = dut.uio_out.value[3]    #[4]
-        ba = dut.uio_out.value[4:8]   #[3:0]
+        ba = dut.uio_out.value[4:7]   #[3:0]
         
         if (halt == 0) and (write == 0):  #active low write during run
             m=write_m(m,int(ma),int(ba),int(mb))
