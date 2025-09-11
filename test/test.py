@@ -131,7 +131,7 @@ async def test_project(dut):
             dut._log.info(oct(ma+0o10000)[3:]+'/'+oct(m[ma]+0o10000)[3:])
 
         dut.ui_in.setimmediatevalue((contin<<1)|membus)
-        await Timer(time=5, units='ns') 
+        await Timer(time=0, units='ns') 
         dut._log.info("run in="+str(dut.ui_in.value))
         contin = 0
 
