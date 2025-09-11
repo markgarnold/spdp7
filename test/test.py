@@ -109,14 +109,14 @@ async def test_project(dut):
         write = dut.uio_out.value >>5
         mb = (dut.uio_out.value >> 4) & 1
         ba = dut.uio_out.value & 0xf
-
+        dut._log.info(
         if (halt == 0) and (write == 0):  #active low write during run
             m=write_m(m,ma,ba,mb)
             membus = mb
-            dut._log.info("write "+str(mb))
+            dut._log.info("write "+str(mb)+" ma="+str(ma)+" ba="+str(ba))
         else:
             membus = read_m(m,ma,ba)
-            dut._log.info("read  "+str(membus))
+            dut._log.info("read  "+str(membus)+" ma="+str(ma)+" ba="+str(ba))
  
         dut.ui_in.value = (contin<<1)|membus
         dut._log.info("run in "+str(dut.ui_in.value))
