@@ -103,7 +103,7 @@ async def test_project(dut):
         dut._log.info("halted "+str(dut.uo_out.value))
     
     while halt == 0:
-        dut._log.info("running "+str(dut.uo_out.value))
+        dut._log.info("running "+str(dut.uo_out.value)+" "+str(dut.uio_out.value))
         halt = dut.uo_out.value >> 7
         ma = dut.uo_out.value & 0x7f
         write = dut.uio_out.value >>5
