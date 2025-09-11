@@ -4,7 +4,8 @@
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import ClockCycles
-
+from cocotb.triggers import Timer
+        
 
 #  pdp8_cpu cpu(write,membus,cont,
 #                    ba,ma,mb,halt,reset,sysclk);
@@ -130,6 +131,7 @@ async def test_project(dut):
             dut._log.info(oct(ma+0o10000)[3:]+'/'+oct(m[ma]+0o10000)[3:])
 
         dut.ui_in.setimmediatevalue((contin<<1)|membus)
+        await Timer(time=5, units='ns') 
         dut._log.info("run in="+str(dut.ui_in.value))
         contin = 0
 
