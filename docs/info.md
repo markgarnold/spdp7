@@ -9,11 +9,11 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Created in the 1960s by Digital Equipment Corp., the PDP8 has 4096 words of 12-bit wide memory. The design given here emulates a subset of PDP8 instructions.  It was inspired by Chapter 11 of my book, Verilog Digital Computer Design, Prentice Hall, 1998, using a tool called Verilog Implicit to One-hot (VITO, see http://www.verilogvito.com/). VITO generated ``src/spdp7vv.v`` from a behaviorial (implicit-style) state machine shown at the bottom in the comments. 
+Created in the 1960s by Digital Equipment Corp., the PDP8 has 4096 words of 12-bit wide memory. The design given here emulates a subset of PDP8 instructions.  It was inspired by Chapter 11 of my book, _Verilog Digital Computer Design: Algorithms into Hardware_, Prentice Hall, 1998, using a tool called Verilog Implicit to One-hot (VITO, see http://www.verilogvito.com/). VITO generated ``src/spdp7vv.v`` from a behaviorial (implicit-style) state machine shown at the bottom in the comments. 
 
 For simplicity and to fit within the pin count of Tiny Tapeout, memory size is reduced to 128 words (7-bit address, ``ma``), and the data to and from memory is accessed one bit per clock cycle.  Because of this serial operation, the bit address (``ba``) within the word must also be output (an extra 4 bits).  
 
-The only register in the PDP8 is the ACcumulator and its one-bit extension called the LINK.  The verilog treats this as a single 13-bit register, ``lac``. The instruction subset supported are Two Complement Add (``TAD``) whose opcode is octal 1; Deposit and Clear AC (``DCA``) whose opcode is 3; JMP whose opcode is 5; and microinstructions whose opcode is 7: group 1 (``CLA``, ``CLL``, ``CMA`` and ``IAC``) and group 2 (conditional and halt). 
+The only register in the PDP8 is the ACcumulator and its one-bit extension called the LINK.  The verilog treats this as a single 13-bit register, ``lac``. The instruction subset supported are Two Complement Add (``TAD``) whose opcode is octal 1; Deposit and Clear AC (``DCA``) whose opcode is 3; JMP whose opcode is 5; and microinstructions whose opcode is 7: group 1 (``CLA``, ``CLL``, ``CMA`` and ``IAC``) and group 2 (conditional and halt). As this came from a textbook example, other PDP8 instructions were unimplemented and left as exercises. 
 
 ## How to test
 
