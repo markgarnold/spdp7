@@ -6,7 +6,7 @@ from cocotb.clock import Clock
 from cocotb.triggers import ClockCycles
 from cocotb.triggers import Timer
         
-max_clock_cycles = 200
+max_clock_cycles = 250
 max_clock_cycles_isz = 1500
 
 #  pdp8_cpu cpu(write,membus,cont,
@@ -45,6 +45,20 @@ def init_m_isz():
     m[0o0110] = 0o0007; # SEVEN, 7
     return m
 
+def init_m_and():
+    m=[]
+    for i in range(0, 128):
+        m.append(0)
+    m[0o0100] = 0o7300; # CLA CLL
+    m[0o0101] = 0o1104; # TAD A
+    m[0o0102] = 0o0105; # AND B
+    m[0o0103] = 0o3105; # DCA B
+    m[0o0104] = 0o7402;
+    m[0o0105] = 0o0707;
+    return m
+
+
+
 def read_m(m,ma,ba):
     word = m[ma]
     return 1&(word>>ba)
@@ -55,12 +69,12 @@ def write_m(m,ma,ba,mb):
     return m
  
 def display_m(m):
-    for i in range(0o0100, 0o0106):
+    for i in range(0o0100, 0o0127):
         print(oct(i+0o10000)[3:]+' '+oct(m[i]+0o10000)[3:])
 
 def log_m(m,dut):
     dut._log.info(" ")
-    for i in range(0o0100, 0o0106):
+    for i in range(0o0100, 0o0127):
         dut._log.info(oct(i+0o10000)[3:]+'/'+oct(m[i]+0o10000)[3:])
 
 def bitdisplay_m(m):
@@ -230,3 +244,72 @@ async def test_project(dut):
     log_m(m,dut)
 
     assert m[0o0107] == 0o0070
+
+        
+    m = init_m_and()        
+    # Reset
+    dut._log.info("Reset")
+    dut.rst_n.value = 0
+    await ClockCycles(dut.clk, 10)
+    dut.rst_n.value = 1
+
+
+    dut._log.info("Test PDP8: AND")
+    await ClockCycles(dut.clk, 10)
+    await ClockCycles(dut.clk, 10)
+    
+    contin = 1
+    dut.ui_in.value = contin << 1
+    halt = dut.uo_out.value >> 7
+    counter = 0
+    while halt == 1:
+        # Wait for one clock cycle to see the output values
+        await ClockCycles(dut.clk, 1)
+        dut.ui_in.value = contin << 1
+        halt = dut.uo_out.value >> 7
+        dut._log.info("halted "+str(dut.uo_out.value))
+    
+    while (halt == 0) and (counter < max_clock_cycles_isz):
+        dut._log.info("run out "+str(dut.uo_out.value)+" "+str(dut.uio_out.value)+" counter="+str(counter))
+        #halt = dut.uo_out.value >> 7
+        #ma = dut.uo_out.value & 0x7f
+        #write = dut.uio_out.value >>5
+        #mb = (dut.uio_out.value >> 4) & 1
+        #ba = dut.uio_out.value & 0xf
+
+        #big endian (cocotb) + little endian (verilog PDP8) = 8 for byte
+        halt = dut.uo_out.value[0]   #[7]
+        ma = dut.uo_out.value[1:7]    #[6:0]
+        write = dut.uio_out.value[2] #[5]
+        mb = dut.uio_out.value[3]    #[4]
+        ba = dut.uio_out.value[4:7]   #[3:0]
+        
+        if (halt == 0) and (write == 0):  #active low write during run
+            m=write_m(m,int(ma),int(ba),int(mb))
+            membus = int(mb)
+            dut._log.info("write "+str(mb)+" ma="+str(ma)+" ba="+str(ba))
+        else:
+            membus = read_m(m,int(ma),int(ba))
+            dut._log.info("read  "+str(membus)+" ma="+str(ma)+" ba="+str(ba))
+
+        if ba==12:
+            dut._log.info(oct(ma+0o10000)[3:]+'/'+oct(m[ma]+0o10000)[3:])
+
+        #These did not solve the lag of membus:
+        #dut.ui_in.setimmediatevalue((contin<<1)|membus)
+        #await Timer(time=0, units='ns') 
+        #instead added extra wait state in verilog so following works in the next cycle
+        dut.ui_in.value = (contin<<1)|membus
+            
+        dut._log.info("run in="+str(dut.ui_in.value)) #this value lags one cycle behind
+        contin = 0
+
+        # Wait for one clock cycle to see the output values
+        await ClockCycles(dut.clk, 1)
+        counter += 1
+
+    log_m(m,dut)
+
+    assert m[0o0105] == 0o0402
+
+
