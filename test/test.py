@@ -30,7 +30,7 @@ def init_m():
     return m
         
 
-def init_m_dca():
+def init_m_isz():
     m=[]
     for i in range(0, 128):
         m.append(0)
